@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:export xmlns:ae="http://www.appian.com/ae/types/2009">
+  <ae:connectedSystem>
+    <uuid>_a-0000e7b8-0003-8000-0000-000000000003_1</uuid>
+    <name>TEST_CS_ExternalAPI</name>
+    <description>Connected System for external API integration (DESA: https://api-dev.example.com, PRE: https://api-pre.example.com, PRO: https://api.example.com)</description>
+  </ae:connectedSystem>
+</ae:export>

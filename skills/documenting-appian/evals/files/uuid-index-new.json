@@ -1,0 +1,20 @@
+{
+  "_a-0000test-0000-8000-0000-000000000000": {
+    "name": "Test Application",
+    "type": "application",
+    "file": "application/_a-0000test-0000-8000-0000-000000000000_1.xml",
+    "description": "Test app"
+  },
+  "_a-0000test-2222-8000-0000-000000000000": {
+    "name": "RC_PM_RenamedProcess",
+    "type": "processModel",
+    "file": "processModel/_a-0000test-2222-8000-0000-000000000000.xml",
+    "description": "Process that was renamed"
+  },
+  "_a-0000test-3333-8000-0000-000000000000": {
+    "name": "RC_WA_NewWebApi",
+    "type": "webApi",
+    "file": "webApi/_a-0000test-3333-8000-0000-000000000000.xml",
+    "description": "Newly added Web API"
+  }
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:export xmlns:ae="http://www.appian.com/ae/types/2009">
+  <processModel>
+    <pm>
+      <meta>
+        <uuid>_a-0000e7b8-0002-8000-0000-000000000002_1</uuid>
+        <name>
+          <string-map>
+            <pair>
+              <locale lang="es" country=""/>
+              <value>TEST_PM_SimpleProcess</value>
+            </pair>
+          </string-map>
+        </name>
+        <desc>
+          <string-map>
+            <pair>
+              <locale lang="es" country=""/>
+              <value>Simple process model for testing</value>
+            </pair>
+          </string-map>
+        </desc>
+      </meta>
+      <nodes>
+        <node>
+          <id>0</id>
+          <ac><name>START_NODE</name></ac>
+          <fname><string-map><pair><locale lang="es" country=""/><value>Start</value></pair></string-map></fname>
+        </node>
+        <node>
+          <id>1</id>
+          <ac><name>END_NODE</name></ac>
+          <fname><string-map><pair><locale lang="es" country=""/><value>End</value></pair></string-map></fname>
+        </node>
+      </nodes>
+      <connections>
+        <connection>
+          <from>0</from>
+          <to>1</to>
+        </connection>
+      </connections>
+    </pm>
+  </processModel>
+</ae:export>

@@ -1,0 +1,217 @@
+[
+  {
+    "query": "Genera la documentación técnica completa de esta aplicación Appian exportada",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Necesito documentar el inventario de objetos, modelo de datos, integraciones y seguridad de la app Appian que tenemos en application_files/",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Quiero un README técnico con arquitectura, glosario de dominio y checklist de deployment para esta aplicación Appian",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "hay que actualizar la doc técnica después de un re-export, solo los objetos que cambiaron",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "oye me han pasado un export de una app appian con XMLs y necesito entender q hace, puedes documentarlo?",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Genera diagramas BPMN Mermaid para todos los Process Models de la aplicación Appian",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Necesito un diagrama ER del modelo de datos (CDTs) usando Mermaid erDiagram",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Crea un diagrama de arquitectura de alto nivel con Mermaid para la app Appian",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Quiero un diagrama de navegación del site Appian usando block-beta de Mermaid",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "oye puedes hacerme los diagramas de los process models? están en application_files/processModel/ y son XMLs",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Ejecuta todos los scripts de automatización para generar la documentación base de la app Appian",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Necesito construir el índice UUID y luego generar el inventario de objetos automáticamente",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Lanza el análisis de dead code y expresiones con analyze_health.py",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "Compara dos exports de la aplicación Appian para ver qué cambió (diff_exports.py)",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "oye lanza los scripts pa generar el inventario y el analisis de salud, q necesito tener la doc base lista hoy",
+    "should_trigger": true,
+    "set": "train"
+  },
+  {
+    "query": "I need to produce technical documentation for an Appian application that's been exported as XML artifacts under application_files/. Cover architecture, data model, security, and deployment.",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "primero documenta la arquitectura y el inventario, luego el modelo de datos con ER, después seguridad y por último genera el deployment checklist con los riesgos específicos de esta app",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "tenemos un repo con carpetas como processModel/, webApi/, datatype/ etc. y necesito que alguien lo analice y me diga qué tiene la aplicación",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "I need Mermaid flowchart diagrams for all Appian process models in the export, with BPMN styling and subprocess click links",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "hay unos XMLs de procesos en el export y necesito visualizarlos como diagramas de flujo con colores por tipo de nodo",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "genera primero el diagrama ER de los CDTs, luego los BPMN de cada PM, y al final un diagrama de arquitectura con las capas de la app",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "Run the Python automation scripts to bulk-generate the UUID index, inventory, CDT parsing, role maps, and health analysis from the Appian export",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "tengo un export con muchos XMLs en application_files/ y quiero extraer datos automáticamente — CDTs, roles, traducciones, todo lo que se pueda sin hacerlo a mano",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "primero genera el uuid index, después el inventario con métricas, luego parsea los CDTs, extrae roles, y al final valida toda la doc generada",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "Documenta el proceso de despliegue de una aplicación Spring Boot con Docker y Kubernetes",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Necesito documentar las APIs REST de nuestro microservicio Java — endpoints, payloads, autenticación",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Crea un diagrama Mermaid de la arquitectura de microservicios de nuestro backend Java con Spring Boot",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Necesito un diagrama de secuencia UML para documentar el flujo de autenticación OAuth2 de nuestra API REST",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Escribe un script Python desde cero que parsee los XML de Appian y genere un inventario en CSV",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Necesito automatizar la generación de documentación de nuestras APIs REST con Swagger/OpenAPI y publicarla en Confluence",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Deploy the Appian application package to the PRO environment and verify the import was successful",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Create a new process model in Appian Designer that handles the approval workflow for purchase orders",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Debug why my Appian process model is failing with a timeout error when calling the external web service",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "Configure the Connected System credentials and JDBC data source in the Appian Admin Console for the QA environment",
+    "should_trigger": false,
+    "set": "validation"
+  },
+  {
+    "query": "hey can you document this Appian app for me? the export is in application_files/",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "run the doc automation scripts to get the base documentation ready",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "what objects are in this Appian export? give me an inventory and health check",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "I need BPMN diagrams for all the process models, with colors and clickable subprocess links",
+    "should_trigger": true,
+    "set": "validation"
+  },
+  {
+    "query": "Documenta el proceso de despliegue de una aplicación Spring Boot con Docker y Kubernetes",
+    "should_trigger": false,
+    "set": "train"
+  },
+  {
+    "query": "Crea un diagrama Mermaid de la arquitectura de microservicios de nuestro backend Java",
+    "should_trigger": false,
+    "set": "train"
+  },
+  {
+    "query": "Escribe un script Python desde cero que parsee XMLs y genere un inventario en CSV",
+    "should_trigger": false,
+    "set": "train"
+  },
+  {
+    "query": "Deploy the Appian application package to PRO and verify the import was successful",
+    "should_trigger": false,
+    "set": "train"
+  },
+  {
+    "query": "Fix the timeout error in my Appian process model when calling the external web service",
+    "should_trigger": false,
+    "set": "train"
+  }
+]

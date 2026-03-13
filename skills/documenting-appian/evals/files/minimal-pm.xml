@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+  <pm>
+    <meta>
+      <uuid>0002test-0000-8000-f92f-7f0000000001</uuid>
+      <name>
+        <string-map>
+          <pair>
+            <locale lang="es"/>
+            <value>PM_Minimal_Test</value>
+          </pair>
+        </string-map>
+      </name>
+    </meta>
+    <node guiId="0">
+      <ac><local-id>core.0</local-id><name>START</name></ac>
+      <connections><connection><to>1</to></connection></connections>
+    </node>
+    <node guiId="1">
+      <ac><local-id>core.1</local-id><name>END</name></ac>
+    </node>
+  </pm>
+</export>

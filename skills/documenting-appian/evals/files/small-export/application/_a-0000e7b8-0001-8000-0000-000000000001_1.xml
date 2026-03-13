@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:export xmlns:ae="http://www.appian.com/ae/types/2009">
+  <ae:application ae:uuid="_a-0000e7b8-0001-8000-0000-000000000001_1">
+    <uuid>_a-0000e7b8-0001-8000-0000-000000000001_1</uuid>
+    <name>TEST_SmallApp</name>
+    <description>Small test application for E2E eval fixture</description>
+  </ae:application>
+</ae:export>

@@ -1,0 +1,532 @@
+{
+  "skill_name": "documenting-appian",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Genera la documentación técnica completa de esta aplicación Appian exportada en application_files/",
+      "files": ["application_files/"],
+      "expected_output": "Documentación completa en docs/ con al menos: README.md, 01-appian-overview.md, 03-appian-inventory.md, 04-appian-architecture.md, 06-appian-data.md, 07-appian-integrations.md, 08-appian-security.md, 09-appian-deployment.md, appian-import-customization-template.properties. Cada archivo contiene secciones con evidencias y referencias cruzadas.",
+      "assertions": [
+        "Se genera docs/README.md con enlaces a todos los demás documentos",
+        "Se genera docs/01-appian-overview.md con nombre de aplicación, UUID y convenciones de nombrado",
+        "Se genera docs/03-appian-inventory.md con tabla Markdown agrupada por tipo",
+        "Se genera docs/04-appian-architecture.md con diagrama Mermaid",
+        "Se genera docs/06-appian-data.md con CDTs, Data Stores y diagrama erDiagram",
+        "Se genera docs/07-appian-integrations.md con Web APIs y Connected Systems",
+        "Se genera docs/08-appian-security.md con jerarquía de grupos y role map",
+        "Se genera docs/09-appian-deployment.md con checklist y riesgos",
+        "Se genera docs/appian-import-customization-template.properties con UUIDs reales",
+        "Cada documento termina con sección Evidencias con paths de ficheros consultados",
+        "Se ejecutan scripts de automatización en lugar de parsear XML manualmente",
+        "No se incluyen secretos, credenciales ni URLs internas sensibles"
+      ],
+      "rubric": {
+        "completeness": "All expected docs generated with populated content",
+        "automation": "Scripts used instead of manual XML parsing",
+        "security": "No secrets or sensitive data in output"
+      }
+    },
+    {
+      "id": 2,
+      "prompt": "Documenta solo el modelo de datos (CDTs, Data Stores, Record Types) con diagrama ER de Mermaid",
+      "files": ["application_files/datatype/", "application_files/dataStore/", "application_files/recordType/"],
+      "expected_output": "docs/06-appian-data.md con: tabla de campos por CDT incluyendo anotaciones JPA, listado de Data Stores con JDBC keys, Record Types con backing entity, y un diagrama erDiagram de Mermaid mostrando relaciones entre CDTs.",
+      "assertions": [
+        "Se genera docs/06-appian-data.md",
+        "El documento contiene detalle campo por campo de los CDTs (nombre, tipo, anotaciones)",
+        "El documento incluye Data Stores con claves JDBC y entidades asociadas",
+        "El documento incluye Record Types con sus backing entities",
+        "El documento contiene un diagrama erDiagram de Mermaid válido",
+        "El diagrama ER muestra relaciones entre CDTs basadas en campos FK",
+        "Se ejecuta parse_cdts.py como parte del proceso"
+      ],
+      "rubric": {
+        "data_model": "CDTs with field detail + Data Stores + Record Types",
+        "diagram": "Valid erDiagram with FK relationships"
+      }
+    },
+    {
+      "id": 3,
+      "prompt": "Genera el inventario completo de objetos Appian y el índice UUID",
+      "files": ["application_files/"],
+      "expected_output": "docs/_uuid-index.json generado por build_uuid_index.py, seguido de docs/03-appian-inventory.md con tabla Markdown agrupada por tipo cubriendo 100% de objetos en application_files/.",
+      "assertions": [
+        "Se ejecuta build_uuid_index.py primero (produce docs/_uuid-index.json)",
+        "Se ejecuta generate_inventory.py después (produce docs/03-appian-inventory.md)",
+        "docs/_uuid-index.json contiene entradas para todos los tipos de objeto encontrados",
+        "docs/03-appian-inventory.md contiene tabla Markdown con columnas tipo, nombre y UUID",
+        "La tabla está agrupada por tipo de objeto",
+        "El inventario cubre 100% de ficheros en application_files/"
+      ],
+      "rubric": {
+        "coverage": "100% of objects in application_files/ inventoried",
+        "automation": "Scripts used for index and inventory generation"
+      }
+    },
+    {
+      "id": 4,
+      "prompt": "Analiza la seguridad de la aplicación: grupos, jerarquía y matriz de permisos",
+      "files": ["application_files/group/", "application_files/"],
+      "expected_output": "docs/08-appian-security.md con: inventario de grupos con UUID/descripción, diagrama Mermaid flowchart TD de jerarquía de grupos, y tabla de permission matrix.",
+      "assertions": [
+        "Se genera docs/08-appian-security.md",
+        "Se ejecuta extract_role_maps.py como parte del proceso",
+        "El documento contiene inventario de grupos con UUID y descripción",
+        "El documento contiene diagrama Mermaid flowchart TD de jerarquía de grupos",
+        "El documento contiene tabla de permission matrix con columnas Object, Role, Assigned Groups",
+        "La matriz cubre todos los objetos que tienen roleMap en el export"
+      ],
+      "rubric": {
+        "hierarchy": "Group hierarchy diagram with color coding",
+        "matrix": "Permission matrix covers all roleMap objects"
+      }
+    },
+    {
+      "id": 5,
+      "prompt": "Genera la documentación técnica de esta aplicación Appian, pero el export en evals/files/minimal-export/ solo contiene META-INF y un application XML.",
+      "files": ["evals/files/minimal-export/"],
+      "expected_output": "Se genera documentación parcial en docs/. Los documentos que dependen de tipos de objeto ausentes se generan vacíos o con indicación de 'sin objetos encontrados'. No se producen errores por directorios faltantes.",
+      "assertions": [
+        "No se produce ningún error fatal por la ausencia de carpetas como processModel/, datatype/, webApi/",
+        "Se genera docs/01-appian-overview.md con al menos el nombre de la aplicación",
+        "Los scripts manejan gracefully la ausencia de datos (exit code 0 o mensaje informativo)",
+        "La documentación generada indica claramente qué secciones están vacías por falta de objetos",
+        "No se inventan datos o se asumen objetos que no existen en el export"
+      ],
+      "rubric": {
+        "edge_case": "Graceful handling of minimal export",
+        "honesty": "Empty sections clearly indicated, no invented data"
+      }
+    },
+    {
+      "id": 6,
+      "prompt": "oye, mi jefe me ha pedido que documente esta app Appian que tenemos en application_files/ antes del viernes. Necesito al menos el inventario de objetos, el modelo de datos con un diagrama ER, y la parte de seguridad con los grupos y permisos.",
+      "files": ["application_files/"],
+      "expected_output": "Documentación parcial en docs/ que incluye al menos: 03-appian-inventory.md, 06-appian-data.md con erDiagram, 08-appian-security.md con role map. Cada documento con sección Evidencias.",
+      "assertions": [
+        "Se genera docs/03-appian-inventory.md con tabla de objetos agrupada por tipo",
+        "Se genera docs/06-appian-data.md con detalle de CDTs y diagrama erDiagram Mermaid",
+        "Se genera docs/08-appian-security.md con grupos y matriz de permisos",
+        "Cada documento incluye sección Evidencias con paths de ficheros consultados",
+        "Se ejecutan scripts de automatización en vez de parsear XML manualmente",
+        "No se generan documentos no solicitados a menos que sean prerequisitos"
+      ],
+      "rubric": {
+        "scope": "Only requested docs generated + prerequisites",
+        "trigger": "Casual language correctly triggers the skill",
+        "traceability": "Evidencias section in every document"
+      }
+    },
+    {
+      "id": 7,
+      "prompt": "Genera la documentacion tecnica completa incluyendo los diagramas BPMN de todos los Process Models y ejecutando los scripts de automatizacion para las fases A-G.",
+      "files": ["application_files/"],
+      "expected_output": "Pipeline completo: scripts ejecutados en orden A-G, pm2mermaid.py en batch para todos los PMs, documentos enriquecidos con narrativa y diagramas adicionales.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta primero (Phase A)",
+        "Todos los scripts de automatizacion se ejecutan en orden (Phases A-G)",
+        "pm2mermaid.py se ejecuta en batch para TODOS los Process Models",
+        "docs/process-models/ contiene un .md por cada PM con diagrama Mermaid validado",
+        "docs/04-appian-architecture.md contiene diagrama flowchart TD y flujos",
+        "docs/06-appian-data.md contiene seccion Data Stores + diagrama erDiagram",
+        "docs/08-appian-security.md contiene diagrama flowchart TD de jerarquia de grupos",
+        "validate_docs.py se ejecuta al final y reporta resultados en docs/README.md"
+      ],
+      "rubric": {
+        "completeness": "All expected docs + diagrams generated",
+        "validation": "validate_docs.py executed and results clean"
+      }
+    },
+    {
+      "id": 8,
+      "prompt": "Genera diagramas BPMN Mermaid para todos los Process Models de esta aplicación Appian",
+      "files": ["application_files/processModel/"],
+      "expected_output": "Un archivo .md por cada XML en application_files/processModel/ dentro de docs/process-models/, nombrado por el nombre del proceso. Cada diagrama incluye classDef con colores BPMN, class assignments, y link a _legend.md.",
+      "assertions": [
+        "Se ejecuta pm2mermaid.py para todos los XMLs en application_files/processModel/",
+        "Cada diagrama se guarda en docs/process-models/ nombrado por el nombre del proceso",
+        "Cada fichero .md contiene un bloque mermaid flowchart válido",
+        "Cada diagrama incluye bloque classDef con colores BPMN al final",
+        "Cada diagrama incluye sentencias class asignando nodos a sus tipos",
+        "Cada fichero incluye link a _legend.md en la parte superior",
+        "Cada fichero incluye sección Evidencias con path al XML fuente",
+        "Procesos con más de 30 nodos usan flowchart TD y subgraph"
+      ],
+      "rubric": {
+        "completeness": "Diagram generated for every PM XML",
+        "styling": "classDef + class + legend link present in all files",
+        "naming": "Files named by process name, not UUID"
+      }
+    },
+    {
+      "id": 9,
+      "prompt": "Genera el diagrama ER del modelo de datos (CDTs) usando Mermaid erDiagram",
+      "files": ["application_files/datatype/", "application_files/dataStore/"],
+      "expected_output": "Un bloque erDiagram en docs/06-appian-data.md con entidades correspondientes a los CDTs, campos clave, y relaciones inferidas.",
+      "assertions": [
+        "docs/06-appian-data.md contiene un bloque mermaid erDiagram válido",
+        "El diagrama incluye una entidad por cada CDT relevante del export",
+        "Cada entidad lista sus campos con tipos de datos",
+        "Se identifican relaciones entre CDTs basadas en campos FK",
+        "El diagrama usa sintaxis erDiagram correcta"
+      ],
+      "rubric": {
+        "coverage": "Entity per relevant CDT",
+        "relationships": "FK-based relationships inferred correctly"
+      }
+    },
+    {
+      "id": 10,
+      "prompt": "Genera un diagrama de arquitectura de alto nivel de la aplicación Appian usando Mermaid",
+      "files": ["application_files/"],
+      "expected_output": "Un flowchart TD en docs/04-appian-architecture.md con subgraphs por capa, nodos con colores Palette A, y flechas mostrando dependencias.",
+      "assertions": [
+        "docs/04-appian-architecture.md contiene un bloque mermaid flowchart TD válido",
+        "El diagrama usa subgraphs para agrupar componentes por capa",
+        "Se incluyen las capas principales: Sites, Web APIs, Process Models, Data Stores",
+        "Los nodos usan colores de Palette A",
+        "Las flechas representan dependencias reales entre componentes del export",
+        "El diagrama incluye sección Evidencias"
+      ],
+      "rubric": {
+        "layers": "Subgraphs for Sites, Web APIs, Process Models, Data Stores",
+        "traceability": "Evidencias section present"
+      }
+    },
+    {
+      "id": 11,
+      "prompt": "Genera el diagrama BPMN Mermaid para el Process Model mínimo en evals/files/minimal-pm.xml que solo tiene un nodo Start y un nodo End.",
+      "files": ["evals/files/minimal-pm.xml"],
+      "expected_output": "Un fichero .md con un diagrama flowchart LR con exactamente 2 nodos y 1 arista.",
+      "assertions": [
+        "pm2mermaid.py se ejecuta sin errores con el fichero mínimo",
+        "El diagrama resultante contiene exactamente 2 nodos",
+        "El diagrama usa flowchart LR (< 30 nodos)",
+        "El fichero .md incluye sección Evidencias",
+        "No se genera vista simplificada para un proceso tan pequeño",
+        "El diagrama incluye classDef aunque solo aplique a 2 nodos"
+      ],
+      "rubric": {
+        "edge_case": "Minimal PM handled without errors",
+        "direction": "flowchart LR for small processes"
+      }
+    },
+    {
+      "id": 12,
+      "prompt": "oye puedes hacerme los diagramas de los process models? están en application_files/processModel/ y son XMLs. Que se vean bien con colores y que si algún proceso llama a otro se pueda hacer click.",
+      "files": ["application_files/processModel/"],
+      "expected_output": "Diagramas Mermaid flowchart para todos los PM en docs/process-models/, con classDef colors, click links para subprocesos, y _legend.md.",
+      "assertions": [
+        "Se ejecuta pm2mermaid.py para todos los XMLs",
+        "Los diagramas incluyen classDef con colores BPMN",
+        "Los subprocesos tienen click links al diagrama del subprocess",
+        "Se genera _legend.md en docs/process-models/",
+        "Cada fichero incluye sección Evidencias",
+        "Los nombres de fichero usan el nombre del proceso, no el UUID"
+      ],
+      "rubric": {
+        "trigger": "Casual language correctly triggers the skill",
+        "subprocess_links": "Click links for subprocess navigation",
+        "legend": "_legend.md generated in output directory"
+      }
+    },
+    {
+      "id": 13,
+      "prompt": "Genera un diagrama de secuencia Mermaid para el flujo de un Web API de la app Appian",
+      "files": ["application_files/connectedSystem/", "application_files/webApi/"],
+      "expected_output": "Un bloque sequenceDiagram en docs/07-appian-integrations.md con participantes Appian, box colors, y autonumber.",
+      "assertions": [
+        "El diagrama usa sintaxis sequenceDiagram de Mermaid",
+        "Los participantes siguen convenciones Appian: actor, participant, database",
+        "Se usan box colors para separar Appian vs External",
+        "El diagrama incluye autonumber",
+        "Se incluye seccion Evidencias"
+      ],
+      "rubric": {
+        "conventions": "Appian participant types and box colors used",
+        "traceability": "Evidencias section present"
+      }
+    },
+    {
+      "id": 14,
+      "prompt": "Ejecuta todos los scripts de automatización para generar la documentación base de la aplicación Appian",
+      "files": ["application_files/"],
+      "expected_output": "Ejecución secuencial de todos los scripts Phase A-G produciendo documentos en docs/. Sin errores.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta primero antes que cualquier otro script",
+        "Se genera docs/_uuid-index.json con entradas UUID",
+        "Se genera docs/03-appian-inventory.md con tabla de inventario",
+        "Se genera docs/06-appian-data.md con detalle de campos CDT",
+        "Se genera docs/08-appian-security.md con matriz de roles",
+        "Se genera docs/12-appian-health.md con análisis de dead code",
+        "Se genera docs/10-appian-i18n.md con traducciones",
+        "Ningún script termina con error (exit code 0)",
+        "Los scripts se ejecutan en el orden correcto"
+      ],
+      "rubric": {
+        "execution_order": "build_uuid_index.py runs before all others",
+        "completeness": "All phase A-G scripts executed",
+        "output_quality": "Generated files contain populated tables"
+      }
+    },
+    {
+      "id": 15,
+      "prompt": "Ejecuta el script de detección de dead code y muestra los resultados",
+      "files": ["application_files/"],
+      "expected_output": "build_uuid_index.py como prerequisito, luego analyze_health.py produciendo docs/12-appian-health.md con clasificación de objetos.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta como prerequisito",
+        "analyze_health.py se ejecuta después del índice",
+        "Se genera docs/12-appian-health.md",
+        "El informe clasifica objetos en categorías: entry-point, structural, unverifiable-content, potentially-unused",
+        "Los tipos estructurales no se marcan como unused",
+        "Los objetos en content/ se clasifican como unverifiable-content"
+      ],
+      "rubric": {
+        "classification": "Objects correctly categorized (no false positives)",
+        "dependency": "UUID index as prerequisite"
+      }
+    },
+    {
+      "id": 16,
+      "prompt": "Compara dos exports de la aplicación Appian usando diff_exports.py con los índices UUID en evals/files/uuid-index-baseline.json y evals/files/uuid-index-new.json",
+      "files": ["evals/files/uuid-index-baseline.json", "evals/files/uuid-index-new.json"],
+      "expected_output": "diff_exports.py genera docs/appian-changelog.md con secciones de objetos nuevos, eliminados y renombrados.",
+      "assertions": [
+        "diff_exports.py se ejecuta sin errores",
+        "Se genera docs/appian-changelog.md",
+        "El changelog identifica objetos nuevos, eliminados y renombrados",
+        "Los cambios se agrupan por categoría"
+      ],
+      "rubric": {
+        "detection": "Correctly identifies new, deleted, and renamed objects",
+        "output_format": "Changes grouped by category"
+      }
+    },
+    {
+      "id": 17,
+      "prompt": "Genera la documentacion de deployment con template ICF y tabla de data sources JDBC",
+      "files": ["application_files/"],
+      "expected_output": "build_uuid_index.py + generate_deployment.py producen docs/09-appian-deployment.md con JDBC table y ICF template con UUIDs reales.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta primero",
+        "generate_deployment.py se ejecuta sin errores",
+        "Se genera docs/09-appian-deployment.md con tabla de data sources JDBC",
+        "Se genera docs/appian-import-customization-template.properties con UUIDs reales",
+        "El deployment doc incluye seccion de riesgos",
+        "El ICF template incluye Connected Systems y constantes environment-specific"
+      ],
+      "rubric": {
+        "deployment": "JDBC data sources table + risks + ICF template",
+        "dependency": "UUID index built first"
+      }
+    },
+    {
+      "id": 18,
+      "prompt": "Genera el mapa de navegacion del site Appian con diagrama block-beta",
+      "files": ["application_files/site/"],
+      "expected_output": "build_uuid_index.py + generate_navigation.py producen docs/05-appian-navigation.md con tabla de paginas y diagrama block-beta.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta como prerequisito",
+        "generate_navigation.py se ejecuta sin errores",
+        "Se genera docs/05-appian-navigation.md",
+        "El documento contiene tabla de paginas",
+        "El documento contiene diagrama block-beta Mermaid valido",
+        "El diagrama usa classDef con colores de Palette A"
+      ],
+      "rubric": {
+        "navigation": "Pages table + block-beta diagram",
+        "dependency": "UUID index as prerequisite"
+      }
+    },
+    {
+      "id": 19,
+      "prompt": "oye necesito q lances los scripts de automatización para tener la doc base lista. Al menos el uuid index, inventario, CDTs, y seguridad.",
+      "files": ["application_files/"],
+      "expected_output": "Ejecución secuencial de build_uuid_index.py, generate_inventory.py, parse_cdts.py, extract_role_maps.py. Outputs en docs/.",
+      "assertions": [
+        "build_uuid_index.py se ejecuta primero",
+        "Se genera docs/_uuid-index.json",
+        "Se genera docs/03-appian-inventory.md",
+        "Se genera docs/06-appian-data.md",
+        "Se genera docs/08-appian-security.md",
+        "Todos los scripts terminan con exit code 0",
+        "No se ejecutan scripts no solicitados salvo dependencias"
+      ],
+      "rubric": {
+        "scope": "Only requested scripts + dependencies executed",
+        "trigger": "Casual language correctly triggers the skill"
+      }
+    },
+    {
+      "id": 20,
+      "prompt": "Ejecuta build_uuid_index.py y generate_inventory.py contra el export mínimo en evals/files/minimal-export/",
+      "files": ["evals/files/minimal-export/"],
+      "expected_output": "build_uuid_index.py genera un _uuid-index.json con solo 1 entrada. generate_inventory.py produce un inventario con solo 1 objeto. Ningún script falla.",
+      "assertions": [
+        "build_uuid_index.py termina con exit code 0",
+        "docs/_uuid-index.json se genera como JSON válido",
+        "generate_inventory.py termina con exit code 0",
+        "docs/03-appian-inventory.md refleja solo los objetos presentes",
+        "No se producen excepciones por glob patterns vacíos"
+      ],
+      "rubric": {
+        "edge_case": "Graceful handling of minimal export",
+        "robustness": "No exceptions on missing directories"
+      }
+    },
+    {
+      "id": 21,
+      "prompt": "Hemos hecho un re-export de la aplicación Appian. Compara el export anterior con el nuevo usando diff_exports.py y actualiza solo la documentación afectada por los cambios.",
+      "files": ["evals/files/uuid-index-baseline.json", "evals/files/uuid-index-new.json", "application_files/"],
+      "expected_output": "diff_exports.py genera docs/appian-changelog.md identificando objetos nuevos, eliminados y renombrados. Solo se regeneran/actualizan los documentos afectados según el mapping tipo→doc.",
+      "assertions": [
+        "diff_exports.py se ejecuta con los dos índices UUID como argumentos",
+        "Se genera docs/appian-changelog.md con secciones de cambios",
+        "El changelog identifica correctamente objetos nuevos, eliminados y renombrados",
+        "Solo se regeneran los scripts correspondientes a los tipos de objeto que cambiaron",
+        "No se regenera documentación de fases no afectadas por los cambios",
+        "Los documentos actualizados mantienen el contenido narrativo existente donde sea posible"
+      ],
+      "rubric": {
+        "incremental": "Only affected docs regenerated, not full pipeline",
+        "detection": "Correctly identifies new, deleted, and renamed objects",
+        "preservation": "Existing narrative content preserved where possible"
+      }
+    },
+    {
+      "id": 22,
+      "prompt": "Ejecuta build_uuid_index.py contra un directorio que contiene un XML malformado (evals/files/corrupted.xml copiado dentro de un processModel/). Verifica que el script no crashea y produce un índice parcial.",
+      "files": ["evals/files/corrupted.xml"],
+      "expected_output": "build_uuid_index.py termina con exit code 0 y genera un _uuid-index.json (posiblemente vacío o parcial). No se produce una excepción no capturada.",
+      "assertions": [
+        "build_uuid_index.py termina con exit code 0 (no crashea)",
+        "Se genera docs/_uuid-index.json como JSON válido",
+        "El XML malformado se omite silenciosamente (try/except en extract_from_xml)",
+        "Los demás objetos válidos se indexan correctamente",
+        "No se produce un traceback de Python en stderr"
+      ],
+      "rubric": {
+        "resilience": "Graceful handling of malformed XML without crashing",
+        "partial_output": "Valid objects still indexed despite corrupted file"
+      }
+    },
+    {
+      "id": 23,
+      "prompt": "Ejecuta el pipeline completo de scripts (Phases A-G) contra el export en evals/files/small-export/ que contiene 1 application, 1 PM, 1 CS, 1 group, y 1 site.",
+      "files": ["evals/files/small-export/"],
+      "expected_output": "Pipeline completo ejecutado sin errores. Documentos generados en docs/ con contenido proporcional al export (pocas filas pero estructura completa).",
+      "assertions": [
+        "build_uuid_index.py genera un _uuid-index.json con al menos 5 entradas (1 app + 1 PM + 1 CS + 1 group + 1 site)",
+        "generate_inventory.py genera 03-appian-inventory.md con tabla agrupada por tipo",
+        "pm2mermaid.py genera un diagrama en docs/process-models/ para el PM del fixture",
+        "extract_role_maps.py genera 08-appian-security.md con al menos 1 grupo",
+        "Ningun script termina con exit code distinto de 0",
+        "Los documentos generados reflejan solo los objetos presentes en el fixture",
+        "validate_docs.py se ejecuta sin errores fatales"
+      ],
+      "rubric": {
+        "e2e": "Full pipeline runs successfully against small but representative export",
+        "proportional_output": "Output reflects the small fixture, no invented data"
+      }
+    },
+    {
+      "id": 24,
+      "prompt": "Ejecuta el pipeline completo de scripts (Phases A-G) con --dry-run contra application_files/ y verifica que no se crea ni modifica ningún archivo en docs/.",
+      "files": ["application_files/"],
+      "expected_output": "Todos los scripts se ejecutan con --dry-run y reportan lo que harían sin crear archivos. Ningún archivo nuevo aparece en docs/.",
+      "assertions": [
+        "Todos los scripts se invocan con --dry-run",
+        "build_uuid_index.py --dry-run reporta '[dry-run] Would write to docs/_uuid-index.json'",
+        "generate_inventory.py --dry-run reporta '[dry-run] Would write to docs/03-appian-inventory.md'",
+        "Ningún archivo nuevo se crea en docs/ durante la ejecución",
+        "Todos los scripts terminan con exit code 0",
+        "La salida incluye resúmenes de lo que se generaría (conteo de objetos, etc.)"
+      ],
+      "rubric": {
+        "dry_run": "All scripts respect --dry-run flag without side effects",
+        "completeness": "All phase A-G scripts invoked with --dry-run"
+      }
+    },
+    {
+      "id": 25,
+      "prompt": "Deploy this Appian application to the PRE environment using the import customization file we already have",
+      "should_trigger": false,
+      "rationale": "Deployment execution is NOT documentation. This should be handled by CI/CD or manual deployment procedures, not the documenting skill.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "No scripts from the documenting-appian skill are executed"
+      ]
+    },
+    {
+      "id": 26,
+      "prompt": "Create a new Connected System in Appian Designer to connect to the SAP API",
+      "should_trigger": false,
+      "rationale": "Appian development/configuration task, not documentation or analysis of an existing export.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "No documentation is generated in docs/"
+      ]
+    },
+    {
+      "id": 27,
+      "prompt": "Write unit tests for the Python scripts in the documenting-appian skill",
+      "should_trigger": false,
+      "rationale": "Testing the skill's own scripts is a development task, not an Appian documentation task.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "Test files are created, not documentation"
+      ]
+    },
+    {
+      "id": 28,
+      "prompt": "Generate a Liquibase DML script to register the new DAF process in the database",
+      "should_trigger": false,
+      "rationale": "This should trigger the liquibase-process-script skill, not documenting-appian.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "The liquibase-process-script skill activates instead"
+      ]
+    },
+    {
+      "id": 29,
+      "prompt": "Fix the bug in the process model XML where the XOR gateway has a missing connection",
+      "should_trigger": false,
+      "rationale": "Bug fixing in XML source files is a development task, not documentation generation.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "The XML file is edited directly, not documented"
+      ]
+    },
+    {
+      "id": 30,
+      "prompt": "Migrate the Appian application from version 23.4 to 24.1 and update all deprecated SAIL components",
+      "should_trigger": false,
+      "rationale": "Version migration and SAIL component updates are development/admin tasks, not documentation of an export.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "No documentation is generated in docs/"
+      ]
+    },
+    {
+      "id": 31,
+      "prompt": "Optimize the SAIL interface performance by reducing the number of rule! calls and caching expression results",
+      "should_trigger": false,
+      "rationale": "Performance optimization is a development task requiring code changes, not documentation generation.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "No scripts from the documenting-appian skill are executed"
+      ]
+    },
+    {
+      "id": 32,
+      "prompt": "Set up the Appian RPA robotic process automation integration with UiPath for the invoice processing workflow",
+      "should_trigger": false,
+      "rationale": "Configuring new RPA integrations is an Appian development/admin task, not documentation of an existing export.",
+      "assertions": [
+        "The documenting-appian skill does NOT activate",
+        "No documentation is generated in docs/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  {{MERMAID_SCRIPT}}
+  <style>
+    /* GitHub-like CSS */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1f2328;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 40px;
+    }
+
+    /* Headings */
+    h1, h2 { border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; }
+    h1 { font-size: 2em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+    h2 { font-size: 1.5em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+    h3 { font-size: 1.25em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+    h4 { font-size: 1em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+
+    /* Paragraphs */
+    p { margin-top: 0; margin-bottom: 16px; }
+
+    /* Tables */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 16px 0;
+      overflow: auto;
+    }
+    th, td {
+      border: 1px solid #d0d7de;
+      padding: 6px 13px;
+      text-align: left;
+    }
+    th {
+      background: #f6f8fa;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background: #f6f8fa;
+    }
+
+    /* Inline code */
+    code {
+      background: #f6f8fa;
+      padding: 0.2em 0.4em;
+      border-radius: 6px;
+      font-size: 85%;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #f6f8fa;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 6px;
+      line-height: 1.45;
+      margin: 16px 0;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      font-size: 85%;
+      border-radius: 0;
+    }
+
+    /* Mermaid diagrams - transparent bg, Mermaid renders its own SVG */
+    pre.mermaid {
+      background: transparent;
+      border: none;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      border-left: 4px solid #d0d7de;
+      color: #656d76;
+      margin: 16px 0;
+      padding: 0 1em;
+    }
+    blockquote p {
+      margin-bottom: 0;
+    }
+
+    /* Horizontal rules */
+    hr {
+      border: none;
+      border-top: 1px solid #d0d7de;
+      margin: 24px 0;
+    }
+
+    /* Links */
+    a { color: #0969da; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Lists */
+    ul, ol { padding-left: 2em; margin-top: 0; margin-bottom: 16px; }
+    li { margin-top: 0.25em; }
+
+    /* Images */
+    img { max-width: 100%; }
+
+    /* Bold and strong */
+    strong { font-weight: 600; }
+
+    /* Header metadata */
+    .header-meta {
+      color: #656d76;
+      font-size: 0.9em;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #d0d7de;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 16px 24px;
+      margin: 16px 0;
+    }
+    .toc a { display: block; padding: 2px 0; }
+    .toc ul { list-style: none; padding-left: 1.5em; }
+
+    /* Print styles */
+    @media print {
+      body { max-width: 100%; padding: 10px; }
+      pre.mermaid svg { max-width: 100%; }
+      a { color: #1f2328; }
+      .header-meta { border-bottom: 1px solid #ccc; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { padding: 10px 16px; }
+      table { font-size: 0.9em; }
+      pre { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="markdown-body">
+    <div class="header-meta">
+      <strong>{{PROJECT_NAME}}</strong> | Version: {{VERSION}} | Generated: {{DATE}}
+    </div>
+    {{CONTENT}}
+  </div>
+</body>
+</html>

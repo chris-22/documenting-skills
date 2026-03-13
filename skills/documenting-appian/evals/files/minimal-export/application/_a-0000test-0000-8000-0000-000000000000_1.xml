@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae2:export xmlns:ae2="http://www.appian.com/ae/types/2009">
+  <ae2:application ae2:uuid="_a-0000test-0000-8000-0000-000000000000_1">
+    <uuid>_a-0000test-0000-8000-0000-000000000000_1</uuid>
+    <name>MinimalTestApp</name>
+  </ae2:application>
+</ae2:export>

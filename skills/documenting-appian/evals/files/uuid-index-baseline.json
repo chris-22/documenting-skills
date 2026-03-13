@@ -1,0 +1,20 @@
+{
+  "_a-0000test-0000-8000-0000-000000000000": {
+    "name": "Test Application",
+    "type": "application",
+    "file": "application/_a-0000test-0000-8000-0000-000000000000_1.xml",
+    "description": "Test app"
+  },
+  "_a-0000test-1111-8000-0000-000000000000": {
+    "name": "RC_CDT_OldObject",
+    "type": "datatype",
+    "file": "datatype/_a-0000test-1111-8000-0000-000000000000.xsd",
+    "description": "Object that will be deleted in new export"
+  },
+  "_a-0000test-2222-8000-0000-000000000000": {
+    "name": "RC_PM_UnchangedProcess",
+    "type": "processModel",
+    "file": "processModel/_a-0000test-2222-8000-0000-000000000000.xml",
+    "description": "Process that stays the same"
+  }
+}

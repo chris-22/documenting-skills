@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:export xmlns:ae="http://www.appian.com/ae/types/2009">
+  <ae:groups>
+    <group>
+      <uuid>_a-0000e7b8-0004-8000-0000-000000000004_1</uuid>
+      <name>TEST_AllUsers</name>
+      <description>Root group for all application users</description>
+    </group>
+  </ae:groups>
+</ae:export>

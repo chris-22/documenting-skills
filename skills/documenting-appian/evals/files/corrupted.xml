@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Intentionally malformed XML for resilience testing -->
+<root>
+  <incomplete>
+    <tag>This tag is not closed
+  </incomplete>
+  <valid>This is valid</valid>
+</root>

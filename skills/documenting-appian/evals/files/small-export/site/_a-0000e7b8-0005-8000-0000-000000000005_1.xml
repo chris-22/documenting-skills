@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:export xmlns:ae="http://www.appian.com/ae/types/2009">
+  <ae:site ae:uuid="_a-0000e7b8-0005-8000-0000-000000000005_1" name="TEST_MainSite">
+    <description>Main site for the test application</description>
+    <pages>
+      <page>
+        <name>Home</name>
+        <slug>home</slug>
+      </page>
+    </pages>
+  </ae:site>
+</ae:export>
