@@ -5,7 +5,7 @@
     "set": "train"
   },
   {
-    "query": "Necesito documentar el inventario de objetos, modelo de datos, integraciones y seguridad de la app Appian que tenemos en application_files/",
+    "query": "Necesito documentar el inventario de objetos, modelo de datos, integraciones y seguridad de la app Appian que tenemos en ",
     "should_trigger": true,
     "set": "train"
   },
@@ -45,7 +45,7 @@
     "set": "train"
   },
   {
-    "query": "oye puedes hacerme los diagramas de los process models? están en application_files/processModel/ y son XMLs",
+    "query": "oye puedes hacerme los diagramas de los process models? están en processModel/ y son XMLs",
     "should_trigger": true,
     "set": "train"
   },
@@ -75,7 +75,7 @@
     "set": "train"
   },
   {
-    "query": "I need to produce technical documentation for an Appian application that's been exported as XML artifacts under application_files/. Cover architecture, data model, security, and deployment.",
+    "query": "I need to produce technical documentation for an Appian application that's been exported as XML artifacts under . Cover architecture, data model, security, and deployment.",
     "should_trigger": true,
     "set": "validation"
   },
@@ -110,7 +110,7 @@
     "set": "validation"
   },
   {
-    "query": "tengo un export con muchos XMLs en application_files/ y quiero extraer datos automáticamente — CDTs, roles, traducciones, todo lo que se pueda sin hacerlo a mano",
+    "query": "tengo un export con muchos XMLs en  y quiero extraer datos automáticamente — CDTs, roles, traducciones, todo lo que se pueda sin hacerlo a mano",
     "should_trigger": true,
     "set": "validation"
   },
@@ -170,7 +170,7 @@
     "set": "validation"
   },
   {
-    "query": "hey can you document this Appian app for me? the export is in application_files/",
+    "query": "hey can you document this Appian app for me? the export is in ",
     "should_trigger": true,
     "set": "validation"
   },

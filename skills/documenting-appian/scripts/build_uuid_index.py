@@ -6,7 +6,7 @@
 """
 Phase A — Build UUID cross-reference index from all Appian export artifacts.
 
-Scans application_files/ and produces docs/_uuid-index.json with:
+Scans the Appian app root directory and produces docs/_uuid-index.json with:
   { uuid: { "name": str, "type": str, "file": str, "description": str } }
 
 Handles: XML objects (name= attribute, <name> element, <group><name>),
@@ -29,7 +29,7 @@ if _SCRIPT_DIR not in sys.path:
 from cli_common import make_parser, validate_args, write_output, verbose
 from xml_helpers import strip_ns, find_child, text
 
-DEFAULT_APP_DIR = "application_files"
+DEFAULT_APP_DIR = "."
 DEFAULT_OUT_FILE = os.path.join("docs", "_uuid-index.json")
 
 _VERBOSE = False  # set from args in main()

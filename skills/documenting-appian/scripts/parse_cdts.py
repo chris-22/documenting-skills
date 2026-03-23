@@ -6,7 +6,7 @@
 """
 Phase D — Parse all CDT XSD files and generate field-level documentation.
 
-Reads application_files/datatype/*.xsd and produces docs/06-appian-data.md with:
+Reads datatype/*.xsd (relative to app root) and produces docs/06-appian-data.md with:
 - CDT name, description, DB table/schema
 - Field table: name, XSD type, nullable, JPA annotations (@Id, @Column, @OneToMany)
 - Relationships between CDTs (fields referencing other CDT types)
@@ -26,7 +26,7 @@ if _SCRIPT_DIR not in sys.path:
 from app_info import get_app_name
 from cli_common import make_parser, validate_args, write_output, verbose
 
-DEFAULT_APP_DIR = os.path.join("application_files", "datatype")
+DEFAULT_APP_DIR = "datatype"
 DEFAULT_OUT = os.path.join("docs", "06-appian-data.md")
 
 NS_XSD = "http://www.w3.org/2001/XMLSchema"
@@ -157,7 +157,7 @@ def main():
         default_output=DEFAULT_OUT, needs_app_dir=True, needs_index=False,
         examples=[
             "python parse_cdts.py",
-            "python parse_cdts.py --app-dir application_files/datatype",
+            "python parse_cdts.py --app-dir datatype",
             "python parse_cdts.py --dry-run",
         ],
     )

@@ -11,7 +11,7 @@ Usage:
   python .github/skills/documenting-appian/scripts/pm2mermaid.py <path/to/processModel.xml> [--out docs/process-models/<uuid>.md]
 
 Notes:
-- Only reads the export; no writes to application_files/.
+- Only reads the export; no writes to the source XML files.
 - Mermaid shapes use v11.3+ expanded syntax (shape metadata). If your renderer is older, replace with classic shapes.
 
 Module structure:
@@ -72,7 +72,7 @@ def main():
                "  3  Data error during processing\n"
                "\n"
                "Examples:\n"
-               "  python pm2mermaid.py application_files/processModel/UUID.xml\n"
+               "  python pm2mermaid.py processModel/UUID.xml\n"
                "  python pm2mermaid.py UUID.xml --dir docs/process-models --legend\n"
                "  python pm2mermaid.py UUID.xml --out docs/process-models/MyProcess.md\n",
         formatter_class=argparse.RawDescriptionHelpFormatter,

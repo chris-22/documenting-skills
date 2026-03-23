@@ -56,7 +56,7 @@ script="$base/pm2mermaid.py"
 dir="docs/process-models"
 mkdir -p "$dir"
 python "$script" --legend --dir "$dir"
-for f in application_files/processModel/*.xml; do
+for f in processModel/*.xml; do
   python "$script" "$f" --dir "$dir" --legend
 done
 ```
@@ -64,7 +64,7 @@ done
 ## Single process model
 
 ```bash
-python "$base/pm2mermaid.py" application_files/processModel/<uuid>.xml --dir docs/process-models
+python "$base/pm2mermaid.py" processModel/<uuid>.xml --dir docs/process-models
 ```
 
 ---
@@ -114,11 +114,11 @@ python "$base/validate_docs.py"
 $s = "$base/pm2mermaid.py"
 New-Item -ItemType Directory -Force -Path docs/process-models | Out-Null
 python $s --legend --dir docs/process-models
-Get-ChildItem application_files/processModel/*.xml | ForEach-Object { python $s $_.FullName --dir docs/process-models --legend }
+Get-ChildItem processModel/*.xml | ForEach-Object { python $s $_.FullName --dir docs/process-models --legend }
 ```
 
 ### Single process model
 
 ```powershell
-python "$base/pm2mermaid.py" application_files/processModel/<uuid>.xml --dir docs/process-models
+python "$base/pm2mermaid.py" processModel/<uuid>.xml --dir docs/process-models
 ```

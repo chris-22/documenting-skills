@@ -6,7 +6,7 @@
 """
 Phase E — Extract role maps from all Appian objects and generate security matrix.
 
-Scans all XML files in application_files/ for <roleMap> elements, resolves group
+Scans all XML files in the Appian app root for <roleMap> elements, resolves group
 UUIDs and object names using docs/_uuid-index.json, and produces docs/08-appian-security.md.
 
 v2: Resolves Process Model names via <pm><meta><name> parsing and marks
@@ -26,7 +26,7 @@ from app_info import get_app_name
 from cli_common import make_parser, validate_args, write_output, verbose
 from xml_helpers import strip_ns, find_child, text
 
-DEFAULT_APP_DIR = "application_files"
+DEFAULT_APP_DIR = "."
 DEFAULT_INDEX = os.path.join("docs", "_uuid-index.json")
 DEFAULT_OUT = os.path.join("docs", "08-appian-security.md")
 

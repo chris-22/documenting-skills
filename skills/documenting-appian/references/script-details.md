@@ -119,7 +119,7 @@ Unlike all other scripts, `pm2mermaid.py` uses its **own argparse** (not `cli_co
 **Batch usage** (all PMs):
 ```bash
 # $base must be set to the scripts/ directory (see bash-commands.md for auto-detection)
-for f in application_files/processModel/*.xml; do
+for f in processModel/*.xml; do
   python "$base/pm2mermaid.py" "$f" --dir docs/process-models --legend
 done
 ```

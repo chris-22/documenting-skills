@@ -2,7 +2,7 @@
 name: documenting-appian
 description: >
   Generates complete technical documentation for Appian applications from
-  XML exports (application_files/): inventory, architecture, data model,
+  XML exports (project root = app folder): inventory, architecture, data model,
   integrations, security, deployment, health analysis, and Mermaid diagrams
   (BPMN flowchart, ER, sequence, state, C4, block-beta, pie, etc.).
   Includes Python automation scripts for each documentation phase.
@@ -20,12 +20,12 @@ compatibility: "Python 3.8+ (stdlib only, no pip install required)."
 
 ## Source of truth
 
-`application_files/` (**read-only** for documentation tasks).
+Project root (`.`) — the open project folder **is** the exported Appian application (**read-only** for documentation tasks).
 See [references/appian-export-format.md](references/appian-export-format.md) for folder names and parsing notes.
 
 ## Goal
 
-Create/update auditable, navigable technical documentation in `docs/`, based **only** on evidence from `application_files/`.
+Create/update auditable, navigable technical documentation in `docs/`, based **only** on evidence from the project root (`.`).
 
 ## Expected outputs
 
@@ -67,7 +67,7 @@ Documentation Progress ([S] = script, [M] = manual/agent):
 
 > **Terminology**: "PM" = Process Model, "CS" = Connected System, "CDT" = Custom Data Type, "ICF" = Import Customization File.
 
-All scripts live in `scripts/` (Python 3.8+, stdlib only, no pip install). Run from repo root.
+All scripts live in `scripts/` (Python 3.8+, stdlib only, no pip install). Run from the project root (the Appian app folder).
 
 | Script | Phase | Output | Auto-generated diagrams |
 |--------|-------|--------|------------------------|

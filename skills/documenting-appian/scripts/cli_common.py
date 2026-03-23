@@ -57,8 +57,8 @@ def make_parser(description, default_output, needs_app_dir=True, needs_index=Fal
     )
     if needs_app_dir:
         parser.add_argument(
-            "--app-dir", default="application_files",
-            help="Path to application_files/ directory (default: application_files)",
+            "--app-dir", default=".",
+            help="Path to Appian app root directory (default: . — current directory)",
         )
     if needs_index:
         parser.add_argument(
@@ -94,7 +94,7 @@ def verbose(args, msg):
 def validate_args(args, needs_app_dir=True, needs_index=False):
     """Validate parsed args. Exits with EXIT_PATH_NOT_FOUND on missing paths."""
     if needs_app_dir and not os.path.isdir(args.app_dir):
-        print(f"Error: directory '{args.app_dir}' not found. Run from the repo root or use --app-dir.", file=sys.stderr)
+        print(f"Error: directory '{args.app_dir}' not found. Run from the Appian app root or use --app-dir.", file=sys.stderr)
         sys.exit(EXIT_PATH_NOT_FOUND)
     if needs_index and not os.path.exists(args.index):
         print(f"Error: '{args.index}' not found. Run build_uuid_index.py first.", file=sys.stderr)

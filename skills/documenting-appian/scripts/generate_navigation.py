@@ -23,7 +23,7 @@ from app_info import get_app_name
 from cli_common import make_parser, validate_args, write_output, verbose
 from xml_helpers import strip_ns, find_child, text
 
-DEFAULT_APP_DIR = "application_files"
+DEFAULT_APP_DIR = "."
 DEFAULT_INDEX = os.path.join("docs", "_uuid-index.json")
 DEFAULT_OUT = os.path.join("docs", "05-appian-navigation.md")
 

@@ -26,7 +26,7 @@ if _SCRIPT_DIR not in sys.path:
 
 from cli_common import make_parser, verbose, EXIT_PATH_NOT_FOUND
 
-DEFAULT_PM_DIR = os.path.join("application_files", "processModel")
+DEFAULT_PM_DIR = "processModel"
 
 
 def extract_pm_name(filepath):
@@ -97,7 +97,7 @@ def main():
         ],
         examples=[
             "python list_process_models.py",
-            "python list_process_models.py --dir application_files/processModel",
+            "python list_process_models.py --dir processModel",
             "python list_process_models.py --tsv",
             "python list_process_models.py --tsv --verbose",
             "python list_process_models.py --json",

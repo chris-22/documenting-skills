@@ -8,7 +8,7 @@
 
 ## Known folder names (verified from real Appian exports)
 
-**IMPORTANT**: The folder names inside the export are NOT officially documented by Appian. The list below is based on verified observations from real exports. Always start by **listing the actual directories** present in `application_files/` rather than assuming a fixed structure.
+**IMPORTANT**: The folder names inside the export are NOT officially documented by Appian. The list below is based on verified observations from real exports. Always start by **listing the actual directories** present in the project root rather than assuming a fixed structure.
 
 - `application/` -- application metadata/definitions (main app manifest with full object list)
 - `connectedSystem/` -- Connected Systems (HTTP, SOAP, etc.)
@@ -39,7 +39,7 @@ Per Appian official docs (design-objects.html), these object types exist and can
 - Portals (public-facing web apps with service accounts)
 - Group Types
 
-**Discovery rule**: in Phase A, always list ALL directories under `application_files/` and treat any unrecognized folder as a new object type to document. Do NOT skip unknown folders.
+**Discovery rule**: in Phase A, always list ALL directories under the project root and treat any unrecognized folder as a new object type to document. Do NOT skip unknown folders.
 
 ## Critical file format notes
 

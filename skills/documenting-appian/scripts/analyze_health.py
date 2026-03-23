@@ -30,7 +30,7 @@ from app_info import get_app_name
 from cli_common import make_parser, validate_args, write_output, verbose
 from xml_helpers import strip_ns
 
-DEFAULT_APP_DIR = "application_files"
+DEFAULT_APP_DIR = "."
 DEFAULT_INDEX = os.path.join("docs", "_uuid-index.json")
 DEFAULT_OUT = os.path.join("docs", "12-appian-health.md")
 
@@ -303,7 +303,7 @@ def main():
             f"# {app_name} — Salud de la aplicación (auto-generado)\n\n"
             "Objetos analizados: **0**\n\n"
             "El índice UUID está vacío. Ejecuta `build_uuid_index.py` primero "
-            "y verifica que `application_files/` contiene objetos.\n"
+            "y verifica que el directorio contiene objetos Appian.\n"
         )
         write_output(args, empty_report, label="Health: 0 objects (empty index)")
         print(f"Health: 0 objects (empty index) -> {args.output}")

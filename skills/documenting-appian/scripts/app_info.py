@@ -2,7 +2,7 @@
 """
 Shared utility — Detect Appian application name and metadata from the export.
 
-Reads application_files/application/*.xml to extract the app name, UUID, and
+Reads application/*.xml (relative to app root) to extract the app name, UUID, and
 description. Used by all automation scripts to generate application-agnostic
 document titles.
 
@@ -19,7 +19,7 @@ import os
 import glob
 import xml.etree.ElementTree as ET
 
-APP_DIR = "application_files"
+APP_DIR = "."
 
 
 def _strip_ns(tag):
@@ -29,7 +29,7 @@ def _strip_ns(tag):
 def get_app_info(app_dir=APP_DIR):
     """Return dict with application name, uuid, and description.
 
-    Scans application_files/application/*.xml for the main manifest.
+    Scans application/*.xml (relative to app_dir) for the main manifest.
     Falls back to directory name if no manifest is found.
 
     Returns:

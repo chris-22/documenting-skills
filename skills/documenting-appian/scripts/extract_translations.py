@@ -6,7 +6,7 @@
 """
 Phase F — Extract translation strings and sets from Appian export.
 
-Reads application_files/translationString/*.xml and translationSet/*.xml
+Reads translationString/*.xml and translationSet/*.xml (relative to app root)
 and produces docs/10-appian-i18n.md with a table of all strings and their values per locale.
 """
 import os
@@ -22,7 +22,7 @@ from app_info import get_app_name
 from cli_common import make_parser, validate_args, write_output, verbose
 from xml_helpers import strip_ns, find_child, text
 
-DEFAULT_APP_DIR = "application_files"
+DEFAULT_APP_DIR = "."
 DEFAULT_OUT = os.path.join("docs", "10-appian-i18n.md")
 
 
